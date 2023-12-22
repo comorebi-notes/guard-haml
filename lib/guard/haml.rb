@@ -55,10 +55,10 @@ module Guard
     private
 
     def compile_haml(file)
-      content = File.new(file).read
+      # content = File.new(file).read
       template_options = options[:haml_options] ? options[:haml_options].dup : {}
       template_options[:filename] = file
-      engine  = ::Haml::Engine.new(content, template_options)
+      engine  = ::Haml::Template.new(file, template_options)
       engine.render scope_object
     rescue StandardError => error
       message = "HAML compilation of #{file} failed!\nError: #{error.message}"
